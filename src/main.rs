@@ -15,10 +15,10 @@ loop {
  .read_line(&mut guess)
  .expect("Failed to read line");
 
- let guess: u32 = guess
- .trim()// remove whitespace
- .parse() // convert to the specified type (u32)
- .expect("Please type a number!");
+ let guess: u32 = match guess.trim().parse() {
+    Ok(num) => num,
+    Err(_) => continue,
+   };
 
  println!("You guessed: {}", guess);
 
@@ -30,6 +30,6 @@ loop {
         break;
         }
     }
-    println!("The secret number was: {}", secret_number);
 }
+
 }
